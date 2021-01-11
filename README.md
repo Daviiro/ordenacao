@@ -1,5 +1,8 @@
 # Trabalho prático de PAA
 Instruções de Envio
+
+link para planilha com tempos https://docs.google.com/spreadsheets/d/1uexHN1DsF1yQAciN4eFfXDQLc8SSkjHjCkslCGGT_W4/edit?usp=sharing
+
 O trabalho deve ser enviado até o dia 19/02/2021 (sexta-feira). O grupo deve enviar o
 relatório com o nome completo dos integrantes do grupo; código fonte e, se necessário,
 instruções para configuração ou compilação. O trabalho deve estar em arquivo zip
