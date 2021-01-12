@@ -41,10 +41,11 @@ import time
 
 def modo(vetor, dim, opcao):     # Ordena os dados em modo crescente ou decrescente para testar o melhor ou pior caso #
     if opcao == 1:
-        print(" Caso Médio -", end = '')
+        pass
+        #print(" Caso Médio -", end = '')
     elif opcao == 2:
         selectionsort(vetor, dim)
-        print(" Melhor Caso -", end = '')
+        #print(" Melhor Caso -", end = '')
     else:
         i = 0
         while i < (dim - 1):
@@ -57,7 +58,7 @@ def modo(vetor, dim, opcao):     # Ordena os dados em modo crescente ou decresce
             if vetor[i] != vetor[maior]:
                 vetor[i], vetor[maior] = vetor[maior], vetor[i]
             i += 1
-        print(" Pior Caso -", end = '')
+        #print(" Pior Caso -", end = '')
 
 
 def bubblesort(vetor, dim):     # Algoritmo Bubblesort #
@@ -239,108 +240,204 @@ def mergesort(vetor):     # Algoritmo Mergesort #
 
 valido = 0
 while valido == 0:
-    print("")
-    print(" Algoritmo: ", end = '')     # Escolhendo o algoritmo desejado #
-    alg = int(input())
-    if alg >= 1 and alg <= 9:
+    print('')
+    print(' (1) para realizar calculos e (2) para calcular tempo: ', end = '')
+    opc = int(input())
+    if opc >= 1 and opc <= 2:
         valido = 1
     else:
-        print(" Por favor, insira um valor válido (entre 1 e 9). ")
+        print(" Por favor, insira um valor válido (entre 1 e 2). ")
         print("")
-valido = 0
-while valido == 0:        
-    print(" Entradas: ", end = '')     # Escolhendo o número de entradas desejado #
-    ent = int(input())
-    if ent > 0:
-        valido = 1
+
+if opc == 1: # Calculando 
+    valido = 0
+    while valido == 0:
+        print("")
+        print(" Algoritmo: ", end = '')     # Escolhendo o algoritmo desejado #
+        alg = int(input())
+        if alg >= 1 and alg <= 9:
+            valido = 1
+        else:
+            print(" Por favor, insira um valor válido (entre 1 e 9). ")
+            print("")
+    valido = 0
+    while valido == 0:        
+        print(" Entradas: ", end = '')     # Escolhendo o número de entradas desejado #
+        ent = int(input())
+        if ent > 0:
+            valido = 1
+        else:
+            print(" Por favor, insira um valor válido (maior que zero). ")
+            print("")
+    valido = 0
+    while valido == 0:
+        print(" Modo: ", end = '')     # Escolhendo o modo desejado (normal, melhor ou pior caso)#
+        mod = int(input())
+        if mod >= 1 and mod <= 3:
+            valido = 1
+            if mod == 1:
+                print(" Caso Médio -", end = '')
+            elif mod == 2:
+                print(" Melhor Caso -", end = '')
+            elif mod == 3:
+                print(" Pior Caso -", end = '')
+        else:
+            print(" Por favor, insira um valor válido (entre 1 e 3). ")
+            print("")
+
+
+    elementos = []
+    for j in range(0, ent):
+        i = random.randint(0, 25000)
+        elementos.append(i)
+
+
+    Dim = len(elementos)
+    modo(elementos, Dim, mod)
+
+
+    clock_start = time.time()
+    if alg == 1:
+        print(" Bubblesort ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        bubblesort(elementos, Dim)
+    elif alg == 2:
+        print(" Bubblesort Melhorado ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        bubblesort2(elementos, Dim)
+    elif alg == 3:
+        print(" Quicksort com Pivô no início da lista ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        quicksort(elementos)
+    elif alg == 4:
+        print(" Quicksort com Pivô no centro da lista ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        quicksort2(elementos, 0, Dim - 1)
+    elif alg == 5:
+        print(" Insertionsort ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        insertionsort(elementos, Dim)
+    elif alg == 6:
+        print(" Shellsort ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        shellsort(elementos, Dim)
+    elif alg == 7:
+        print(" Selectionsort ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        selectionsort(elementos, Dim)
+    elif alg == 8:
+        print(" Heapsort ")
+        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        heapsort(elementos, Dim)
     else:
-        print(" Por favor, insira um valor válido (maior que zero). ")
+        print(" Mergesort ")
         print("")
-valido = 0
-while valido == 0:
-    print(" Modo: ", end = '')     # Escolhendo o modo desejado (normal, melhor ou pior caso)#
-    mod = int(input())
-    if mod >= 1 and mod <= 3:
-        valido = 1
-    else:
-        print(" Por favor, insira um valor válido (entre 1 e 3). ")
-        print("")
+        if Dim <= 20:
+            print(" pré-ordenação: ", elementos)
+        mergesort(elementos)
+
+    clock_end = time.time()
+    if Dim <= 20:
+        print(" pós-ordenação: ", elementos)
+    print(" tempo de execução: ",(clock_end - clock_start), " segundos.")
+    print("")
+    print(" Pedro Henrique Zago Costa, David Jr. Rodrigues e Gabriel Cecon Carlsen. ")
+    print("")
 
 
-elementos = []
-for j in range(0, ent):
-    i = random.randint(0, 25000)
-    elementos.append(i)
+elif opc == 2: # impressao da tabelas com o devido tempo
+    print('You haven choseen death')
+    valido = 0
+    while valido == 0:        
+        print(" Entradas: ", end = '')     # Escolhendo o número de entradas desejado #
+        ent = int(input())
+        if ent > 0:
+            valido = 1
+        else:
+            print(" Por favor, insira um valor válido (maior que zero). ")
+            print("")
+    valido = 0
+    while valido == 0:
+        print(" Modo: ", end = '')     # Escolhendo o modo desejado (normal, melhor ou pior caso)#
+        mod = int(input())
+        if mod >= 1 and mod <= 3:
+            valido = 1
+        else:
+            print(" Por favor, insira um valor válido (entre 1 e 3). ")
+            print("")
 
+    count = 0
+    while count <= 8:
+        elementos = []
+        for j in range(0, ent):
+            i = random.randint(0, 25000)
+            elementos.append(i)
+        Dim = len(elementos)
+        modo(elementos, Dim, mod)
+        if count == 0:
+            clock_start = time.time()
+            bubblesort(elementos, Dim)
+            clock_end = time.time()
+            print("\n Algoritmo   | tempo")
+            print(" BubbleSort  | ",(clock_end - clock_start), " seg.")
+        elif count == 1:
+            clock_start = time.time()
+            bubblesort2(elementos, Dim)
+            clock_end = time.time()
+            print(" BubbleSort 2| ",(clock_end - clock_start), " seg.")
+        elif count == 2:
+            clock_start = time.time()
+            quicksort(elementos)
+            clock_end = time.time()
+            print(" Quicksort   | ",(clock_end - clock_start), " seg.")
+        elif count == 3:
+            clock_start = time.time()
+            quicksort2(elementos, 0, Dim - 1)
+            clock_end = time.time()
+            print(" Quicksort 2 | ",(clock_end - clock_start), " seg.")
+        elif count == 4:
+            clock_start = time.time()
+            insertionsort(elementos, Dim)
+            clock_end = time.time()
+            print(" Insertion   | ",(clock_end - clock_start), " seg.")
+        elif count == 5:
+            clock_start = time.time()
+            shellsort(elementos, Dim)
+            clock_end = time.time()
+            print(" Shellsort   | ",(clock_end - clock_start), " seg.")
+        elif count == 6:
+            clock_start = time.time()
+            selectionsort(elementos, Dim)
+            clock_end = time.time()
+            print(" Selection   | ",(clock_end - clock_start), " seg.")
+        elif count == 7:
+            clock_start = time.time()
+            heapsort(elementos, Dim)
+            clock_end = time.time()
+            print(" Heapsort    | ",(clock_end - clock_start), " seg.")
+        else:
+            clock_start = time.time()
+            mergesort(elementos)
+            clock_end = time.time()
+            print(" Mergesort   | ",(clock_end - clock_start), " seg.\n")
 
-Dim = len(elementos)
-modo(elementos, Dim, mod)
-
-
-clock_start = time.time()
-if alg == 1:
-    print(" Bubblesort ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    bubblesort(elementos, Dim)
-elif alg == 2:
-    print(" Bubblesort Melhorado ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    bubblesort2(elementos, Dim)
-elif alg == 3:
-    print(" Quicksort com Pivô no início da lista ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    quicksort(elementos)
-elif alg == 4:
-    print(" Quicksort com Pivô no centro da lista ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    quicksort2(elementos, 0, Dim - 1)
-elif alg == 5:
-    print(" Insertionsort ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    insertionsort(elementos, Dim)
-elif alg == 6:
-    print(" Shellsort ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    shellsort(elementos, Dim)
-elif alg == 7:
-    print(" Selectionsort ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    selectionsort(elementos, Dim)
-elif alg == 8:
-    print(" Heapsort ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    heapsort(elementos, Dim)
-else:
-    print(" Mergesort ")
-    print("")
-    if Dim <= 20:
-        print(" pré-ordenação: ", elementos)
-    mergesort(elementos)
-
-clock_end = time.time()
-if Dim <= 20:
-    print(" pós-ordenação: ", elementos)
-print(" tempo de execução: ",(clock_end - clock_start), " segundos.")
-print("")
-print(" Pedro Henrique Zago Costa, David Jr. Rodrigues e Gabriel Cecon Carlsen. ")
-print("")
-
+        count += 1
 
 # ========================================================================= #
 #  Pedro Henrique Zago Costa - David Jr. Rodrigues - Gabriel Cecon Carlsen  #
