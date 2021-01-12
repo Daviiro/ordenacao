@@ -37,6 +37,8 @@
 
 import random
 import time
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 def modo(vetor, dim, opcao):     # Ordena os dados em modo crescente ou decrescente para testar o melhor ou pior caso #
@@ -362,7 +364,6 @@ if opc == 1: # Calculando
 
 
 elif opc == 2: # impressao da tabelas com o devido tempo
-    print('You haven choseen death')
     valido = 0
     while valido == 0:        
         print(" Entradas: ", end = '')     # Escolhendo o número de entradas desejado #
@@ -382,6 +383,7 @@ elif opc == 2: # impressao da tabelas com o devido tempo
             print(" Por favor, insira um valor válido (entre 1 e 3). ")
             print("")
 
+    height = []
     count = 0
     while count <= 8:
         elementos = []
@@ -394,50 +396,76 @@ elif opc == 2: # impressao da tabelas com o devido tempo
             clock_start = time.time()
             bubblesort(elementos, Dim)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print("\n Algoritmo   | tempo")
             print(" BubbleSort  | ",(clock_end - clock_start), " seg.")
         elif count == 1:
             clock_start = time.time()
             bubblesort2(elementos, Dim)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" BubbleSort 2| ",(clock_end - clock_start), " seg.")
         elif count == 2:
             clock_start = time.time()
             quicksort(elementos)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Quicksort   | ",(clock_end - clock_start), " seg.")
         elif count == 3:
             clock_start = time.time()
             quicksort2(elementos, 0, Dim - 1)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Quicksort 2 | ",(clock_end - clock_start), " seg.")
         elif count == 4:
             clock_start = time.time()
             insertionsort(elementos, Dim)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Insertion   | ",(clock_end - clock_start), " seg.")
         elif count == 5:
             clock_start = time.time()
             shellsort(elementos, Dim)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Shellsort   | ",(clock_end - clock_start), " seg.")
         elif count == 6:
             clock_start = time.time()
             selectionsort(elementos, Dim)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Selection   | ",(clock_end - clock_start), " seg.")
         elif count == 7:
             clock_start = time.time()
             heapsort(elementos, Dim)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Heapsort    | ",(clock_end - clock_start), " seg.")
         else:
             clock_start = time.time()
             mergesort(elementos)
             clock_end = time.time()
+            height.append(clock_end - clock_start)
             print(" Mergesort   | ",(clock_end - clock_start), " seg.\n")
 
         count += 1
+
+# Plotando grafico
+print(height)
+bars = ('BS', 'BS2', 'QC', 'QC2', 'IS', 'SL', 'SE', 'HP', 'MG')
+y_pos = np.arange(len(bars))
+plt.bar(y_pos, height, color=(0.2, 0.4, 0.6, 0.6))
+
+# Inserindo os devidos nomes das barras
+plt.xticks(y_pos, bars, color='red', rotation=45, fontweight='bold', fontsize='17', horizontalalignment='right')
+
+ 
+# Titulo do eixo Y
+plt.ylabel('Tempo em segundos', fontweight='bold', color = 'red', fontsize='17', horizontalalignment='center')
+
+# Exibe o grafico desenvolvido acima
+plt.show()
+
 
 # ========================================================================= #
 #  Pedro Henrique Zago Costa - David Jr. Rodrigues - Gabriel Cecon Carlsen  #
