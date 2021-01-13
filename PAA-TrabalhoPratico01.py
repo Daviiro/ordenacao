@@ -450,21 +450,21 @@ elif opc == 2: # impressao da tabelas com o devido tempo
 
         count += 1
 
-# Plotando grafico
-print(height)
-bars = ('BS', 'BS2', 'QC', 'QC2', 'IS', 'SL', 'SE', 'HP', 'MG')
-y_pos = np.arange(len(bars))
-plt.bar(y_pos, height, color=(0.2, 0.4, 0.6, 0.6))
+    # Plotando grafico
+    print(height)
+    bars = ('BS', 'BS2', 'QC', 'QC2', 'IS', 'SL', 'SE', 'HP', 'MG')
+    y_pos = np.arange(len(bars))
+    plt.bar(y_pos, height, color=(0.2, 0.4, 0.6, 0.6))
 
-# Inserindo os devidos nomes das barras
-plt.xticks(y_pos, bars, color='red', rotation=45, fontweight='bold', fontsize='17', horizontalalignment='right')
+    # Inserindo os devidos nomes das barras
+    plt.xticks(y_pos, bars, color='red', rotation=45, fontweight='bold', fontsize='17', horizontalalignment='right')
 
  
-# Titulo do eixo Y
-plt.ylabel('Tempo em segundos', fontweight='bold', color = 'red', fontsize='17', horizontalalignment='center')
+    # Titulo do eixo Y
+    plt.ylabel('Tempo em segundos', fontweight='bold', color = 'red', fontsize='17', horizontalalignment='center')
 
-# Exibe o grafico desenvolvido acima
-plt.show()
+    # Exibe o grafico desenvolvido acima
+    plt.show()
 
 
 # ========================================================================= #
