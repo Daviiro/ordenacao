@@ -40,6 +40,9 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
+import sys # Aumentando o limite de chamadas recursivas que serao usadas nas funcoes quicksort
+sys.setrecursionlimit(1500)
+
 
 def modo(vetor, dim, opcao):     # Ordena os dados em modo crescente ou decrescente para testar o melhor ou pior caso #
     if opcao == 1:
@@ -465,6 +468,7 @@ elif opc == 2: # impressao da tabelas com o devido tempo
 
     # Exibe o grafico desenvolvido acima
     plt.show()
+
 
 
 # ========================================================================= #
