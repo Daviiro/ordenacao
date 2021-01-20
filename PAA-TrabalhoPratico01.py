@@ -92,56 +92,78 @@ def bubblesort2(vetor, dim):     # Algoritmo Bubblesort Melhorado #
         j = 0
         i += 1     
 
-
-def quicksort(vetor):     # Algoritmo Quicksort com Pivô no início da lista #
-    auxiliar_quick_1(vetor, 0, len(vetor) -1)
+def quicksort(vetor, dim):     # Algoritmo Quicksort com Pivô no início da lista #
+    if dim == 1:
+        return
+    if dim == 2:
+        if vetor[0] > vetor[1]:
+            vetor[0], vetor[1] = vetor[1], vetor[0]
+    else:
+        pilha = []
+        pilha.append(0)
+        tamanho = int(len(vetor))
+        pilha.append(tamanho)
+        while pilha:
+            lim_dir = pilha.pop()
+            lim_esq = pilha.pop()
+            if (lim_dir - lim_esq >= 2):
+                pivo = auxiliar_quick_1(vetor, lim_esq, lim_dir)
+                pilha.append(pivo + 1)
+                pilha.append(lim_dir)
+                pilha.append(lim_esq)
+                pilha.append(pivo)
 
 def auxiliar_quick_1(vetor, inicio, fim):
-    if inicio < fim:
-        div = auxiliar_quick_2(vetor, inicio, fim)
-        auxiliar_quick_1(vetor, inicio, div - 1)
-        auxiliar_quick_1(vetor, div + 1, fim)
+    pivo = vetor[inicio]
+    i = fim
+    j = fim - 1
+    while j > inicio:
+        if vetor[j] > pivo:
+            i -= 1
+            vetor[i], vetor[j] = vetor[j], vetor[i]
+        j -= 1
+    while j != (i - 1):
+        vetor[j] = vetor[j + 1]
+        j += 1
+    vetor[i - 1] = pivo
+    return (i - 1)
+
+
+def quicksort2(vetor, dim):     # Algoritmo Quicksort com Pivô no centro da lista #
+    if dim == 1:
+        return
+    if dim == 2:
+        if vetor[0] > vetor[1]:
+            vetor[0], vetor[1] = vetor[1], vetor[0]
+    else:
+        pilha = []
+        pilha.append(0)
+        tamanho = int(len(vetor))
+        pilha.append(tamanho - 1)
+        while pilha:
+            lim_dir = pilha.pop()
+            lim_esq = pilha.pop()
+            if (lim_esq < lim_dir):
+                esquerda, direita = auxiliar_quick_2(vetor, lim_esq, lim_dir)
+                pilha.append(esquerda)
+                pilha.append(lim_dir)
+                pilha.append(lim_esq)
+                pilha.append(direita)
 
 def auxiliar_quick_2(vetor, inicio, fim):
-    pivo = vetor[inicio]
-    esquerda = inicio + 1
+    pivo = vetor[int((inicio + fim) / 2)]
+    esquerda = inicio
     direita = fim
-    ok = False
-    while ok != True:
-        while esquerda <= direita and vetor[esquerda] <= pivo:
+    while esquerda <= direita:
+        while vetor[esquerda] < pivo:
             esquerda += 1
-        while direita >= esquerda and vetor[direita] >= pivo:
+        while vetor[direita] > pivo:
             direita -= 1
-        if direita < esquerda:
-            ok = True
-        else:
+        if esquerda <= direita:
             vetor[esquerda], vetor[direita] = vetor[direita], vetor[esquerda]
-    vetor[inicio], vetor[direita] = vetor[direita], vetor[inicio]
-    return direita
-
-
-def quicksort2(vetor, inicio, fim):     # Algoritmo Quicksort com Pivô no centro da lista #
-    if inicio < fim:
-        pivo = auxiliar_quick_3(vetor, inicio, fim)
-        quicksort2(vetor, inicio, pivo - 1)
-        quicksort2(vetor, pivo + 1, fim)
-
-def auxiliar_quick_3(vetor, inicio, fim):
-    pivo = vetor[inicio]
-    esquerda = inicio + 1
-    direita = fim
-    ok = False
-    while ok != True:
-        while esquerda <= direita and vetor[esquerda] <= pivo:
             esquerda += 1
-        while direita >= esquerda and vetor[direita] >= pivo:
             direita -= 1
-        if direita < esquerda:
-            ok = True
-        else:
-            vetor[esquerda], vetor[direita] = vetor[direita], vetor[esquerda]
-    vetor[inicio], vetor[direita] = vetor[direita], vetor[inicio]
-    return direita
+    return esquerda, direita
 
 
 def insertionsort(vetor, dim):     # Algoritmo Insertionsort #
@@ -319,13 +341,13 @@ if opc == 1: # Calculando
         print("")
         if Dim <= 20:
             print(" pré-ordenação: ", elementos)
-        quicksort(elementos)
+        quicksort(elementos, Dim)
     elif alg == 4:
         print(" Quicksort com Pivô no centro da lista ")
         print("")
         if Dim <= 20:
             print(" pré-ordenação: ", elementos)
-        quicksort2(elementos, 0, Dim - 1)
+        quicksort2(elementos, Dim)
     elif alg == 5:
         print(" Insertionsort ")
         print("")
@@ -410,13 +432,13 @@ elif opc == 2: # impressao da tabelas com o devido tempo
             print(" BubbleSort 2| ",(clock_end - clock_start), " seg.")
         elif count == 2:
             clock_start = time.time()
-            quicksort(elementos)
+            quicksort(elementos, Dim)
             clock_end = time.time()
             height.append(clock_end - clock_start)
             print(" Quicksort   | ",(clock_end - clock_start), " seg.")
         elif count == 3:
             clock_start = time.time()
-            quicksort2(elementos, 0, Dim - 1)
+            quicksort2(elementos, Dim)
             clock_end = time.time()
             height.append(clock_end - clock_start)
             print(" Quicksort 2 | ",(clock_end - clock_start), " seg.")
@@ -454,14 +476,12 @@ elif opc == 2: # impressao da tabelas com o devido tempo
         count += 1
 
     # Plotando grafico
-    print(height)
     bars = ('BS', 'BS2', 'QC', 'QC2', 'IS', 'SL', 'SE', 'HP', 'MG')
     y_pos = np.arange(len(bars))
     plt.bar(y_pos, height, color=(0.2, 0.4, 0.6, 0.6))
 
     # Inserindo os devidos nomes das barras
     plt.xticks(y_pos, bars, color='red', rotation=45, fontweight='bold', fontsize='17', horizontalalignment='right')
-
  
     # Titulo do eixo Y
     plt.ylabel('Tempo em segundos', fontweight='bold', color = 'red', fontsize='17', horizontalalignment='center')
