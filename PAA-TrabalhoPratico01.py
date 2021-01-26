@@ -341,7 +341,7 @@ if opc == 1: # Calculando
         print("")
         if Dim <= 20:
             print(" pré-ordenação: ", elementos)
-        quicksort(elemento, Dim)
+        quicksort(elementos, Dim)
     elif alg == 4:
         print(" Quicksort com Pivô no centro da lista ")
         print("")
