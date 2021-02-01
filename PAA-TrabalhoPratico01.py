@@ -27,7 +27,7 @@
 #    8- Heapsort                                                                                                        #
 #    9- Mergesort                                                                                                       #
 #  II. Entradas: Aqui é inserido quantas entradas (números a serem ordenados) teremos.                                  # 
-#    - Testamos com os valores 1.000, 5.000, 10.000, 15.000, 20.000 e 25.000; mas qualquer entrada é válida             # 
+#    - Testamos com os valores 1.000, 5.000, 10.000, 15.000 e 25.000; porém qualquer entrada é válida             #
 #  III. Modo: Aqui é inserido de que modo os valores serão inseridos nos algoritmos de ordenação. Podem ser:            #
 #    1- Normal (padrão, aleatório, caso médio)                                                                          #
 #    2- Ordenado (melhor caso, ideal)                                                                                   #
