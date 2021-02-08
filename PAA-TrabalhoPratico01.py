@@ -265,6 +265,7 @@ def mergesort(vetor):     # Algoritmo Mergesort #
             k += 1
 
 
+# Main
 valido = 0
 while valido == 0:
     print('')
