@@ -5,7 +5,7 @@ O trabalho deve ser enviado até o dia 19/02/2021 (sexta-feira).
 O grupo deve enviar orelatório com o nome completo dos integrantes do grupo; código fonte e, se necessário,instruções para configuração ou compilação. O trabalho deve estar em arquivo zip submetido via Google Classroom. Note que o arquivo zip não deve conter executáveis, para o Classroom não barrar o envio. Se for necessário enviar executáveis, envie um documento com um link para download do trabalho ou dos códigos fonte.
 
 Data máxima para envio:
-O trabalho deve ser enviado até o dia 19/02/2021.
+O trabalho deve ser enviado até o dia 26/02/2021.
 
 Especificações do trabalho prático:
 O trabalho pode ser desenvolvido em grupos de no máximo 3 pessoas.
